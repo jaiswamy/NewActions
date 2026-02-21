@@ -39,11 +39,24 @@ jobs:
       - name: Deploy on EC2
         uses: appleboy/ssh-action@v1
         with:
+          
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            cd /home/ubuntu
+            if [ ! -d "app" ]; then
+              git clone https://github.com/jaiswamy/actionstest.git app
+            fi
+            cd app
+            git pull
+            
+            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+            docker login --username AWS --password-stdin 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+            
             docker pull 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-backend:latest
             docker pull 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-frontend:latest
+            
+            
             docker compose down
             docker compose up -d
