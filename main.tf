@@ -59,7 +59,7 @@ resource "aws_instance" "actions" {
     instance_type = "t3.small"
     associate_public_ip_address = true
     subnet_id = aws_subnet.mysubnet.id
-    key_name = "action"
+    key_name = "newactions"
     vpc_security_group_ids = [aws_security_group.mysecuritygroup.id]
     tags = {
         Name = "actions"
