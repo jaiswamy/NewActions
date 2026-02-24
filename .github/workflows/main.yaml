@@ -46,7 +46,7 @@ jobs:
           script: |
             cd /home/ubuntu
             if [ ! -d "app" ]; then
-              git clone https://github.com/jaiswamy/actionstest.git app
+              git clone https://github.com/jaiswamy/NewActions.git app
             fi
             cd app
             git pull
