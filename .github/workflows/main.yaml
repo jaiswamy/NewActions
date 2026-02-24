@@ -26,13 +26,13 @@ jobs:
 
       - name: Build and Push Backend
         run: |
-          docker build -t actionstest-backend ./backend
+          docker build --no-cache -t actionstest-backend ./backend
           docker tag actionstest-backend:latest 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-backend:latest
           docker push 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-backend:latest
 
       - name: Build and Push Frontend
         run: |
-          docker build -t actionstest-frontend ./frontend
+          docker build --no-cache-t actionstest-frontend ./frontend
           docker tag actionstest-frontend:latest 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-frontend:latest
           docker push 269825205171.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/actionstest-frontend:latest
 
