@@ -7,7 +7,7 @@ sudo apt install -y docker.io
 sudo systemctl enable docker
 sudo systemctl start docker
 
-sudo apt  install docker-compose
+sudo apt  install docker-compose -y
 
 
 sudo usermod -aG docker ubuntu

@@ -1,0 +1,37 @@
+resource "aws_ecr_repository" "backend" {
+  name                 = "actionstest-backend"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  tags = {
+    Environment = "production"
+    Project     = "actionstest"
+  }
+}
+
+resource "aws_ecr_repository" "frontend" {
+  name                 = "actionstest-frontend"
+  image_tag_mutability = "MUTABLE"
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+
+  tags = {
+    Environment = "production"
+    Project     = "actionstest"
+  }
+}
+
+
+
+output "backend_repository_url" {
+  value = aws_ecr_repository.backend.repository_url
+}
+
+output "frontend_repository_url" {
+  value = aws_ecr_repository.frontend.repository_url
+}
